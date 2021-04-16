@@ -78,6 +78,8 @@
     <Compile Include="SingleObject.cs" />
     <Compile Include="TankBorn.cs" />
     <Compile Include="TankFather.cs" />
+    <Compile Include="Wall.cs" />
+    <Compile Include="zhuangbei.cs" />
     <Compile Include="ZiDanFather.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

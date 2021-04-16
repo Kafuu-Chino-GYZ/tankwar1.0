@@ -95,6 +95,11 @@ namespace tankwar1._0
             Born();
         }
 
+        //此变量用于限制敌方坦克的移动，配合计时器道具使用
+        public bool canmove = true;
+
+        //此变量用于计时器道具使用后解冻敌方坦克
+        public int stoptime = 0;
         //向窗体当中绘制敌人坦克
         public override void Draw(Graphics g)
         {
@@ -105,8 +110,19 @@ namespace tankwar1._0
             }
             if (isMove)
             {
-                //绘制后立即让坦克开始移动
-                Move();
+                if(canmove)
+                {
+                    //绘制后立即让坦克开始移动
+                    Move();
+                }
+                else
+                {
+                    stoptime++;
+                    if(stoptime%100==0)
+                    {
+                        canmove = true;
+                    }
+                }
                 switch (EnemyTankType)
                 {
                     case 0:
@@ -206,7 +222,7 @@ namespace tankwar1._0
 
         public override void IsOver()
         {
-            if(this.Life==0)
+            if(this.Life<=0)
             {
                 //被干掉了，播放爆炸动画并删掉这个坦克对象，播放坦克爆炸的声音
                 SingleObject.GetSingle().AddGameObject(new boom(this.X - 25, this.Y - 25));
@@ -219,6 +235,12 @@ namespace tankwar1._0
                     SingleObject.GetSingle().AddGameObject
                         (new EnemyTank(r.Next(0, 928), r.Next(0, 690), r.Next(0, 3), Direction.Down));
                 } 
+
+                //被干掉了，且打开了宝箱，掉落了装备
+                if(r.Next(0,100)>=70)
+                {
+                    SingleObject.GetSingle().AddGameObject(new zhuangbei(this.X, this.Y, r.Next(0, 3)));
+                }
             }
             else
             {

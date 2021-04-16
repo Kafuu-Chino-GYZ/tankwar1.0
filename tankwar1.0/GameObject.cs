@@ -132,5 +132,10 @@ namespace tankwar1._0
         {
 
         }
+
+        public GameObject(int x,int y,int width,int height):this(x,y,width,height,0,0,0)
+        {
+
+        }
     }
 }

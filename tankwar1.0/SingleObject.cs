@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using tankwar1._0.Properties;
 
 namespace tankwar1._0
 {
@@ -41,6 +43,10 @@ namespace tankwar1._0
         List<boom> listboom = new List<boom>();
 
         List<TankBorn> listbron = new List<TankBorn>();
+
+        List<zhuangbei> listzhuangbei = new List<zhuangbei>();
+
+        List<Wall> listWall = new List<Wall>();
         //添加游戏对象
         public void AddGameObject(GameObject go)
         {
@@ -68,6 +74,14 @@ namespace tankwar1._0
             {
                 listbron.Add(go as TankBorn);
             }
+            else if(go is zhuangbei)
+            {
+                listzhuangbei.Add(go as zhuangbei);
+            }
+            else if(go is Wall)
+            {
+                listWall.Add(go as Wall);
+            }
         }
         //绘制游戏对象
         public void Draw(Graphics g)
@@ -93,6 +107,14 @@ namespace tankwar1._0
             {
                 listbron[i].Draw(g);
             }
+            for(int i=0;i<listzhuangbei.Count;i++)
+            {
+                listzhuangbei[i].Draw(g);
+            }
+            for(int i=0;i<listWall.Count; i++)
+            {
+                listWall[i].Draw(g);
+            }
         }
 
         //移除游戏对象
@@ -117,6 +139,14 @@ namespace tankwar1._0
             if(go is TankBorn)
             {
                 listbron.Remove(go as TankBorn);
+            }
+            if(go is zhuangbei)
+            {
+                listzhuangbei.Remove(go as zhuangbei);
+            }
+            if(go is Wall)
+            {
+                listWall.Remove(go as Wall);
             }
         }
         
@@ -152,6 +182,133 @@ namespace tankwar1._0
                 }
             }
             #endregion
+
+            #region 玩家捡装备的判断
+            for(int i=0;i<listzhuangbei.Count;i++)
+            {
+                //玩家吃到了装备
+                if (listzhuangbei[i].GetRectangle().IntersectsWith(PT.GetRectangle()))
+                {
+                    //装备效果显现
+                    JudgeZB(listzhuangbei[i].ZBType);
+                    //吃到装备后应该将装备移除
+                    listzhuangbei.Remove(listzhuangbei[i]);
+                    
+                    //添加吃装备的声音
+                    SoundPlayer sp = new SoundPlayer(Resources.add);
+                    sp.Play();
+
+                }
+            }
+            #endregion
+
+            #region 敌方坦克和地图的碰撞检测
+            for(int i=0;i<listWall.Count;i++)
+            {
+                for(int j=0;j<listEnemyTank.Count;j++)
+                {
+                    if(listWall[i].GetRectangle().IntersectsWith
+                        (listEnemyTank[j].GetRectangle()))
+                    {
+                        //敌人和墙体发生碰撞，让敌人的坐标固定到碰撞的位置
+                        //判断敌人是从那个方向过来的
+                        switch(listEnemyTank[j].direction)
+                        {
+                            case Direction.Up:
+                                listEnemyTank[j].Y = listWall[i].Y + listWall[i].Height;
+                                break;
+                            case Direction.Down:
+                                listEnemyTank[j].Y = listWall[i].Y - listWall[i].Height;
+                                break;
+                            case Direction.Left:
+                                listEnemyTank[j].X = listWall[i].X + listWall[i].Width;
+                                break;
+                            case Direction.Right:
+                                listEnemyTank[j].X= listWall[i].X - listWall[i].Width;
+                                break;
+
+                        }
+                    }
+                }
+            }
+            #endregion
+
+            #region 判断玩家的子弹是否打到了墙体
+            for(int i=0;i<listPlayerZiDan.Count;i++)
+            {
+                for(int j=0;j<listWall.Count;j++)
+                {
+                    if(listPlayerZiDan[i].GetRectangle().
+                        IntersectsWith(listWall[j].GetRectangle()))
+                    {
+                        //子弹打到了墙上
+                        listPlayerZiDan.Remove(listPlayerZiDan[i]);
+                        listWall.Remove(listWall[j]);
+                        break;
+                    }
+                }
+            }
+            #endregion
+            #region 判断敌人的子弹与墙体的碰撞检测
+            for (int i = 0; i < listEnemyZiDan.Count; i++)
+            {
+                for (int j = 0; j < listWall.Count; j++)
+                {
+                    if (listEnemyZiDan[i].GetRectangle().
+                        IntersectsWith(listWall[j].GetRectangle()))
+                    {
+                        //子弹打到了墙上
+                        listEnemyZiDan.Remove(listEnemyZiDan[i]);
+                        listWall.Remove(listWall[j]);
+                        break;
+                    }
+                }
+            }
+            #endregion
+
+            #region 判断敌人子弹与我方子弹相撞
+            for (int i = 0; i < listEnemyZiDan.Count; i++)
+            {
+                for (int j = 0; j < listPlayerZiDan.Count; j++)
+                {
+                    if (listEnemyZiDan[i].GetRectangle().
+                        IntersectsWith(listPlayerZiDan[j].GetRectangle()))
+                    {
+                        listEnemyZiDan.Remove(listEnemyZiDan[i]);
+                        listPlayerZiDan.Remove(listPlayerZiDan[j]);
+                        break;
+                    }
+                }
+            }
+            #endregion
+        }
+
+        //判断装备类型
+        public void JudgeZB(int type)
+        {
+            switch(type)
+            {
+                case 0: //吃到五角星，让玩家子弹速度变快
+                    if(PT.ZDLevel<2)
+                    {
+                        PT.ZDLevel++;
+                    }
+                    break;
+                case 1:  //吃到地雷，世界核平
+                    for(int i=0;i<listEnemyTank.Count;i++)
+                    {
+                        listEnemyTank[i].Life = 0;
+                        listEnemyTank[i].IsOver();
+                    }
+                    break;
+                case 2://吃到计时器，时停~~~~！
+                    for(int i=0;i<listEnemyTank.Count;i++)
+                    {
+                        listEnemyTank[i].canmove = false;
+                    }
+
+                    break;
+            }
         }
     }
 }

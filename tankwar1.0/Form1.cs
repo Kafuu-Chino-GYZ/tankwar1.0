@@ -70,6 +70,30 @@ namespace tankwar1._0
             //在程序加载的时候播放开始音乐
             SoundPlayer sp = new SoundPlayer(Resources.start);
             sp.Play();
+
+            InitialMap();
+        }
+
+        //初始化地图
+        public void InitialMap()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                SingleObject.GetSingle().AddGameObject(new Wall(i * 15 + 30, 100));
+                SingleObject.GetSingle().AddGameObject(new Wall(95, 100 + 15 * i));
+
+                SingleObject.GetSingle().AddGameObject(new Wall(245 - i * 7, 100 + 15 * i));
+                SingleObject.GetSingle().AddGameObject(new Wall(245 + i * 7, 100 + 15 * i));
+                SingleObject.GetSingle().AddGameObject(new Wall(215 + i * 15 / 2, 185));
+
+                SingleObject.GetSingle().AddGameObject(new Wall(390 - i * 5, 100 + 15 * i));
+                SingleObject.GetSingle().AddGameObject(new Wall(390 + i * 5, 100 + 15 * i));
+                SingleObject.GetSingle().AddGameObject(new Wall(480 - i * 5, 100 + 15 * i));
+
+                SingleObject.GetSingle().AddGameObject(new Wall(515, 100 + 15 * i));
+                SingleObject.GetSingle().AddGameObject(new Wall(595 - i * 8, 100 + 15 * i / 2));
+                SingleObject.GetSingle().AddGameObject(new Wall(530 + i * 8, 165 + 15 * i / 2));
+            }
         }
     }
 }

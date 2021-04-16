@@ -22,9 +22,15 @@ namespace tankwar1._0
         public PlayerTank(int x,int y,int speed,int life,Direction direction)
             :base(x,y,images,speed,life,direction)
         {
-
+            Born();
         }
 
+        //此类用于记录玩家子弹的等级
+        public int ZDLevel
+        {
+            get;
+            set;
+        }
         public void KeyDown(KeyEventArgs e)
         {
             switch(e.KeyCode)
@@ -53,7 +59,19 @@ namespace tankwar1._0
 
         public override void Fire()
         {
-            SingleObject.GetSingle().AddGameObject(new PlayerZiDan(this, 15, 15, 1));
+            switch(ZDLevel)
+            {
+                case 0:
+                    SingleObject.GetSingle().AddGameObject(new PlayerZiDan(this, 15, 15, 1));
+                    break;
+                case 1:
+                    SingleObject.GetSingle().AddGameObject(new PlayerZiDan(this, 25, 15, 1));
+                    break;
+                case 2:
+                    SingleObject.GetSingle().AddGameObject(new PlayerZiDan(this, 30, 15, 1));
+                    break;
+            }
+            
         }
 
         public override void IsOver()
