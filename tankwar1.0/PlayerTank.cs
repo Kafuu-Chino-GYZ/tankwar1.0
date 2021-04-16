@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -57,7 +58,14 @@ namespace tankwar1._0
 
         public override void IsOver()
         {
+            SoundPlayer sp = new SoundPlayer(Resources.hit);
+            sp.Play();
             SingleObject.GetSingle().AddGameObject(new boom(this.X - 25, this.Y - 25));
+        }
+
+        public override void Born()
+        {
+            SingleObject.GetSingle().AddGameObject(new TankBorn(this.X, this.Y));
         }
     }
 }

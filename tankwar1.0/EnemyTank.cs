@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using tankwar1._0.Properties;
@@ -91,70 +92,79 @@ namespace tankwar1._0
         public EnemyTank(int x,int y,int type,Direction direction):base(x,y,images1,setspeed(type),setlife(type),direction)
         {
             this.EnemyTankType = type;
+            Born();
         }
 
         //向窗体当中绘制敌人坦克
         public override void Draw(Graphics g)
         {
-            //绘制后立即让坦克开始移动
-            Move();
-            switch(EnemyTankType)
+            bornTime++;
+            if(bornTime%50==0)
             {
-                case 0:
-                    switch(this.direction)
-                    {
-                        case Direction.Up:
-                            g.DrawImage(images1[0], this.X, this.Y);
-                            break;
-                        case Direction.Down:
-                            g.DrawImage(images1[1], this.X, this.Y);
-                            break;
-                        case Direction.Left:
-                            g.DrawImage(images1[2], this.X, this.Y);
-                            break;
-                        case Direction.Right:
-                            g.DrawImage(images1[3], this.X, this.Y);
-                            break;
-                    }
-                    break;
-                case 1:
-                    switch (this.direction)
-                    {
-                        case Direction.Up:
-                            g.DrawImage(images2[0], this.X, this.Y);
-                            break;
-                        case Direction.Down:
-                            g.DrawImage(images2[1], this.X, this.Y);
-                            break;
-                        case Direction.Left:
-                            g.DrawImage(images2[2], this.X, this.Y);
-                            break;
-                        case Direction.Right:
-                            g.DrawImage(images2[3], this.X, this.Y);
-                            break;
-                    }
-                    break;
-                case 2:
-                    switch (this.direction)
-                    {
-                        case Direction.Up:
-                            g.DrawImage(images3[0], this.X, this.Y);
-                            break;
-                        case Direction.Down:
-                            g.DrawImage(images3[1], this.X, this.Y);
-                            break;
-                        case Direction.Left:
-                            g.DrawImage(images3[2], this.X, this.Y);
-                            break;
-                        case Direction.Right:
-                            g.DrawImage(images3[3], this.X, this.Y);
-                            break;
-                    }
-                    break;
+                isMove = true;
             }
-            if(r.Next(0,100)<2)
+            if (isMove)
             {
-                Fire();
+                //绘制后立即让坦克开始移动
+                Move();
+                switch (EnemyTankType)
+                {
+                    case 0:
+                        switch (this.direction)
+                        {
+                            case Direction.Up:
+                                g.DrawImage(images1[0], this.X, this.Y);
+                                break;
+                            case Direction.Down:
+                                g.DrawImage(images1[1], this.X, this.Y);
+                                break;
+                            case Direction.Left:
+                                g.DrawImage(images1[2], this.X, this.Y);
+                                break;
+                            case Direction.Right:
+                                g.DrawImage(images1[3], this.X, this.Y);
+                                break;
+                        }
+                        break;
+                    case 1:
+                        switch (this.direction)
+                        {
+                            case Direction.Up:
+                                g.DrawImage(images2[0], this.X, this.Y);
+                                break;
+                            case Direction.Down:
+                                g.DrawImage(images2[1], this.X, this.Y);
+                                break;
+                            case Direction.Left:
+                                g.DrawImage(images2[2], this.X, this.Y);
+                                break;
+                            case Direction.Right:
+                                g.DrawImage(images2[3], this.X, this.Y);
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (this.direction)
+                        {
+                            case Direction.Up:
+                                g.DrawImage(images3[0], this.X, this.Y);
+                                break;
+                            case Direction.Down:
+                                g.DrawImage(images3[1], this.X, this.Y);
+                                break;
+                            case Direction.Left:
+                                g.DrawImage(images3[2], this.X, this.Y);
+                                break;
+                            case Direction.Right:
+                                g.DrawImage(images3[3], this.X, this.Y);
+                                break;
+                        }
+                        break;
+                }
+                if (r.Next(0, 100) < 2)
+                {
+                    Fire();
+                }
             }
         }
 
@@ -177,10 +187,10 @@ namespace tankwar1._0
                     case 1:
                         this.direction = Direction.Down;
                         break;
-                    case 3:
+                    case 2:
                         this.direction = Direction.Left;
                         break;
-                    case 4:
+                    case 3:
                         this.direction = Direction.Right;
                         break;
                 }
@@ -196,8 +206,33 @@ namespace tankwar1._0
 
         public override void IsOver()
         {
-            SingleObject.GetSingle().AddGameObject(new boom(this.X - 25, this.Y - 25));
-            SingleObject.GetSingle().RemoveGameObject(this);
+            if(this.Life==0)
+            {
+                //被干掉了，播放爆炸动画并删掉这个坦克对象，播放坦克爆炸的声音
+                SingleObject.GetSingle().AddGameObject(new boom(this.X - 25, this.Y - 25));
+                SingleObject.GetSingle().RemoveGameObject(this);
+                SoundPlayer sp = new SoundPlayer(Resources.blast);
+                sp.Play();
+                //被干掉了，但是没有完全干掉，我又活了(死后生成一个新坦克）
+                if(r.Next(0,100)>=80)
+                {
+                    SingleObject.GetSingle().AddGameObject
+                        (new EnemyTank(r.Next(0, 928), r.Next(0, 690), r.Next(0, 3), Direction.Down));
+                } 
+            }
+            else
+            {
+                //敌人被击中但是还活着
+                SoundPlayer sp = new SoundPlayer(Resources.hit);
+                sp.Play();
+            }
+            
+        }
+
+        //敌人坦克出生的方法
+        public override void Born()
+        {
+            SingleObject.GetSingle().AddGameObject(new TankBorn(this.X, this.Y));
         }
     }
 }

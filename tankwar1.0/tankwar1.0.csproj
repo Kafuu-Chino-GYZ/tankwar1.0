@@ -76,6 +76,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleObject.cs" />
+    <Compile Include="TankBorn.cs" />
     <Compile Include="TankFather.cs" />
     <Compile Include="ZiDanFather.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -193,6 +194,48 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blast8.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blast.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hit.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\born1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\born2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\born3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\born4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\timer.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wall.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wall1.GIF" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

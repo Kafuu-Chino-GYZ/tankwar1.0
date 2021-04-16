@@ -35,6 +35,7 @@ namespace tankwar1._0
             :base(tf.X+tf.Width/2-6,tf.Y+tf.Height/2-6,image.Width,image.Height,speed,life,tf.direction)
         {
             this.image = image;
+            this.power = power;
         }
 
         public override void Draw(Graphics g)

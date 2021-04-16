@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using tankwar1._0.Properties;
 
 namespace tankwar1._0
 {
@@ -64,6 +66,10 @@ namespace tankwar1._0
                 ControlStyles.ResizeRedraw |
                 ControlStyles.AllPaintingInWmPaint,
                 true);
+
+            //在程序加载的时候播放开始音乐
+            SoundPlayer sp = new SoundPlayer(Resources.start);
+            sp.Play();
         }
     }
 }
