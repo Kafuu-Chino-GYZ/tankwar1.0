@@ -30,6 +30,15 @@ namespace tankwar1._0
             get;
             set;
         }
+
+        //将敌人存储在泛型集合中
+        List<EnemyTank> listEnemyTank = new List<EnemyTank>();
+
+        List<PlayerZiDan> listPlayerZiDan = new List<PlayerZiDan>();
+
+        List<EnemyZiDan> listEnemyZiDan = new List<EnemyZiDan>();
+
+        List<boom> listboom = new List<boom>();
         //添加游戏对象
         public void AddGameObject(GameObject go)
         {
@@ -37,11 +46,85 @@ namespace tankwar1._0
             {
                 PT = go as PlayerTank;   //as类型转换，转换成功返回对应的对象，否则返回null
             }
+            else if(go is EnemyTank)
+            {
+                listEnemyTank.Add(go as EnemyTank);
+            }
+            else if(go is PlayerZiDan)
+            {
+                listPlayerZiDan.Add(go as PlayerZiDan);
+            }
+            else if(go is EnemyZiDan)
+            {
+                listEnemyZiDan.Add(go as EnemyZiDan);
+            }
+            else if(go is boom)
+            {
+                listboom.Add(go as boom);
+            }
         }
         //绘制游戏对象
         public void Draw(Graphics g)
         {
             PT.Draw(g);
+            for(int i=0;i<listEnemyTank.Count;i++)
+            {
+                listEnemyTank[i].Draw(g);
+            }
+            for(int i=0;i<listPlayerZiDan.Count;i++)
+            {
+                listPlayerZiDan[i].Draw(g);
+            }
+            for(int i=0;i<listEnemyZiDan.Count;i++)
+            {
+                listEnemyZiDan[i].Draw(g);
+            }
+            for (int i = 0; i < listboom.Count; i++)
+            {
+                listboom[i].Draw(g);
+            }
+        }
+
+        //移除游戏对象
+        public void RemoveGameObject(GameObject go)
+        {
+            if(go is boom)
+            {
+                listboom.Remove(go as boom);
+            }
+            if(go is PlayerZiDan)
+            {
+                listPlayerZiDan.Remove(go as PlayerZiDan);
+            }
+            if(go is EnemyZiDan)
+            {
+                listEnemyZiDan.Remove(go as EnemyZiDan);
+            }
+            if(go is EnemyTank)
+            {
+                listEnemyTank.Remove(go as EnemyTank);
+            }
+        }
+        
+        //碰撞检测
+        public void PZJC()
+        {
+            #region 判断玩家的子弹是否打在了敌人身上
+            for(int i=0;i<listPlayerZiDan.Count;i++)
+            {
+                for(int j=0;j<listEnemyTank.Count;j++)
+                {
+                    //判断玩家的子弹是否达到了敌人身上
+                    if(listPlayerZiDan[i].GetRectangle().IntersectsWith(listEnemyTank[j].GetRectangle()))
+                    {
+                        //敌人减少生命值
+                        listEnemyTank[j].Life -= listPlayerZiDan[i].power;
+                        listEnemyTank[j].IsOver();
+                    }
+                }
+            }
+            #endregion
+
         }
     }
 }

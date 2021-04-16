@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace tankwar1._0
 {
     //提供玩家坦克子类和敌人坦克子类所共有的成员
-    class TankFather :GameObject
+    abstract class TankFather :GameObject
     {
         //提供玩家坦克子类和敌人坦克子类所共有的成员
         private Image[] images = new Image[] { };
@@ -37,5 +37,11 @@ namespace tankwar1._0
                     break; 
             }
         }
+
+        //己方和敌方坦克开火方式不同，此处提供抽象方法由各子类重写
+        public abstract void Fire();
+
+        //坦克炸了
+        public abstract void IsOver();
     }
 }

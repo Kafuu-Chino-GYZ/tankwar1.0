@@ -44,7 +44,20 @@ namespace tankwar1._0
                     this.direction = Direction.Right;
                     base.Move();
                     break;
+                case Keys.J:
+                    Fire();
+                    break;
             }
+        }
+
+        public override void Fire()
+        {
+            SingleObject.GetSingle().AddGameObject(new PlayerZiDan(this, 15, 15, 1));
+        }
+
+        public override void IsOver()
+        {
+            SingleObject.GetSingle().AddGameObject(new boom(this.X - 25, this.Y - 25));
         }
     }
 }

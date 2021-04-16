@@ -113,19 +113,24 @@ namespace tankwar1._0
             {
                 this.Y = 0;
             }
-            if (this.X >= 1920)
+            if (this.X >= 928)
             {
-                this.X = 1920;
+                this.X = 928;
             }
-            if(this.Y>=1080)
+            if(this.Y>=690)
             {
-                this.Y = 1080;
+                this.Y = 690;
             }
         }
         //此方法用于碰撞检测
         public Rectangle GetRectangle()
         {
             return new Rectangle(this.X, this.Y, this.Width, this.Height);
+        }
+
+        public GameObject(int x, int y) : this(x, y, 0, 0, 0, 0, 0)  //this 1.代表当前类的对象 2.显式地调用自己类当中的构造函数
+        {
+
         }
     }
 }

@@ -118,6 +118,69 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="blast1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast3.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast4.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast5.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast6.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast7.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blast8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blast8.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy1_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy1_down.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy1_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy1_left.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy1_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy1_right.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy1_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy1_up.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy2_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy2_down.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy2_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy2_left.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy2_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy2_right.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy2_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy2_up.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy3_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy3_down.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy3_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy3_left.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy3_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy3_right.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemy3_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemy3_up.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="enemymissile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\enemymissile.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mytank_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mytank_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -129,5 +192,8 @@
   </data>
   <data name="mytank_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mytank_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tankmissile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tankmissile.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
