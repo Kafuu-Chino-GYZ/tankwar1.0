@@ -177,6 +177,7 @@ namespace tankwar1._0
                         }
                         break;
                 }
+                //以一个较低的概率让敌方坦克开火
                 if (r.Next(0, 100) < 2)
                 {
                     Fire();

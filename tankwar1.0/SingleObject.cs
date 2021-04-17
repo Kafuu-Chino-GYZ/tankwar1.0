@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using tankwar1._0.Properties;
 
@@ -33,7 +34,7 @@ namespace tankwar1._0
             set;
         }
 
-        //将敌人存储在泛型集合中
+        #region  用泛型集合存储各种游戏对象
         List<EnemyTank> listEnemyTank = new List<EnemyTank>();
 
         List<PlayerZiDan> listPlayerZiDan = new List<PlayerZiDan>();
@@ -47,6 +48,7 @@ namespace tankwar1._0
         List<zhuangbei> listzhuangbei = new List<zhuangbei>();
 
         List<Wall> listWall = new List<Wall>();
+        #endregion
         //添加游戏对象
         public void AddGameObject(GameObject go)
         {
@@ -83,6 +85,7 @@ namespace tankwar1._0
                 listWall.Add(go as Wall);
             }
         }
+
         //绘制游戏对象
         public void Draw(Graphics g)
         {
